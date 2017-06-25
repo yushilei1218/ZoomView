@@ -5,22 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yushilei.zoomview.MainActivity">
-
+    <!--背景图 scaleType必须使用matrix,这样才能使用Matrix进行缩放-->
     <ImageView
         android:id="@+id/background_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="matrix"
         android:src="@mipmap/background2" />
-
+    <!--布局的Header
+    ScrollListenerBehavior作用于Header,
+    用于监听RecyclerView滑动事件，并在必要的时候做出来 -->
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape"
         android:padding="@dimen/activity_horizontal_margin"
-        app:layout_behavior=".behavior.ScrollBehavior">
-
+        app:layout_behavior=".behavior.ScrollListenerBehavior">
+        <!--Header里面只放了简单的图片 和TextView-->
         <ImageView
             android:id="@+id/img"
             android:layout_width="wrap_content"
@@ -38,14 +40,16 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textSize="25sp"
-                android:textColor="#F00"
                 android:layout_height="wrap_content"
-                android:text="你好" />
+                android:text="你好"
+                android:textColor="#F00"
+                android:textSize="25sp" />
         </LinearLayout>
     </RelativeLayout>
-    <!--LayoutPositionBehavior 作用于RecyclerView 监听header信息
-    根据Header的布局位置决定自己的布局位置-->
+
+    <!--RecyclerView
+    LayoutPositionBehavior 作用于RecyclerView 监听header信息
+    根据Header的布局位置排版自己的布局位置-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
@@ -53,4 +57,5 @@
         android:background="#ffffff"
         app:layoutManager="LinearLayoutManager"
         app:layout_behavior=".behavior.LayoutPositionBehavior" />
+
 </android.support.design.widget.CoordinatorLayout>

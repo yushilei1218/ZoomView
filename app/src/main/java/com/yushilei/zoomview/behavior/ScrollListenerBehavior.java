@@ -18,7 +18,7 @@ import com.yushilei.zoomview.R;
 /**
  * Created by Administrator on 2017/6/23.
  */
-public class ScrollBehavior extends CoordinatorLayout.Behavior {
+public class ScrollListenerBehavior extends CoordinatorLayout.Behavior {
     /**
      * 需要被缩放的ImageView
      */
@@ -36,11 +36,11 @@ public class ScrollBehavior extends CoordinatorLayout.Behavior {
      */
     private static final float SCROLL_RATIO = 0.5F;
 
-    public ScrollBehavior() {
+    public ScrollListenerBehavior() {
         this(null, null);
     }
 
-    public ScrollBehavior(Context context, AttributeSet attrs) {
+    public ScrollListenerBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
@@ -53,7 +53,7 @@ public class ScrollBehavior extends CoordinatorLayout.Behavior {
         mScreenHeight = metrics.heightPixels;
     }
 
-    String TAG = "ScrollBehavior";
+    String TAG = "ScrollListenerBehavior";
 
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
@@ -152,7 +152,7 @@ public class ScrollBehavior extends CoordinatorLayout.Behavior {
             mZoomMatrix = new Matrix(backImg.getMatrix());
         }
         mZoomMatrix.reset();
-        mZoomMatrix.setScale(scaleRatio, scaleRatio, backImg.getWidth() / 2, backImg.getHeight() / 2);
+        mZoomMatrix.setScale(scaleRatio, scaleRatio, backImg.getWidth() / 2, 0f);
         backImg.setImageMatrix(mZoomMatrix);
     }
 
